@@ -15,18 +15,6 @@ function outwardEdgeNormal(vertex1, vertex2) {
     y: -n.y
   };
 }
-function leftSide(vertex1, vertex2, p) {
-  return (p.x - vertex1.x) * (vertex2.y - vertex1.y) - (vertex2.x - vertex1.x) * (p.y - vertex1.y);
-}
-function isReflexVertex(vertices, vertexIndex) {
-  var thisVertex = vertices[vertexIndex];
-  var nextVertex = vertices[(vertexIndex + 1) % vertices.length];
-  var prevVertex = vertices[(vertexIndex + vertices.length - 1) % vertices.length];
-  if (leftSide(prevVertex, nextVertex, thisVertex) < 0) {
-    return true;
-  }
-  return false;
-}
 function createPolygon(vertices) {
   const edges = [];
   let minX = vertices.length > 0 ? vertices[0].x : void 0;
@@ -34,7 +22,6 @@ function createPolygon(vertices) {
   let maxX = minX;
   let maxY = minY;
   for (let i = 0; i < vertices.length; i++) {
-    vertices[i].isReflex = isReflexVertex(vertices, i);
     const vertex1 = vertices[i];
     const vertex2 = vertices[(i + 1) % vertices.length];
     const outwardNormal = outwardEdgeNormal(vertex1, vertex2);
@@ -126,7 +113,10 @@ function createMarginPolygon(polygon, offset, arcSegments) {
     const prevEdge = offsetEdges[(i + offsetEdges.length - 1) % offsetEdges.length];
     const vertex = edgesIntersection(prevEdge, thisEdge);
     if (vertex && (!vertex.isIntersectionOutside || arcSegments < 1)) {
-      vertices.push(vertex);
+      vertices.push({
+        x: vertex.x,
+        y: vertex.y
+      });
     } else {
       const arcCenter = polygon.edges[i].vertex1;
       appendArc(arcSegments, vertices, arcCenter, offset, prevEdge.vertex2, thisEdge.vertex1, false);
@@ -150,7 +140,10 @@ function createPaddingPolygon(polygon, offset, arcSegments) {
     const prevEdge = offsetEdges[(i + offsetEdges.length - 1) % offsetEdges.length];
     const vertex = edgesIntersection(prevEdge, thisEdge);
     if (vertex && (!vertex.isIntersectionOutside || arcSegments < 1)) {
-      vertices.push(vertex);
+      vertices.push({
+        x: vertex.x,
+        y: vertex.y
+      });
     } else {
       const arcCenter = polygon.edges[i].vertex1;
       appendArc(arcSegments, vertices, arcCenter, offset, prevEdge.vertex2, thisEdge.vertex1, true);

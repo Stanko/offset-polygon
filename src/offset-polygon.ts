@@ -6,23 +6,17 @@ type Vector = {
   y: number;
 };
 
-type Vertex = {
-  x: number;
-  y: number;
-  isReflex?: boolean;
-};
-
 type Edge = {
   index: number;
   inwardNormal: Vector;
   outwardNormal: Vector;
-  vertex1: Vertex;
-  vertex2: Vertex;
+  vertex1: Vector;
+  vertex2: Vector;
 };
 
 type OffsetEdge = {
-  vertex1: Vertex;
-  vertex2: Vertex;
+  vertex1: Vector;
+  vertex2: Vector;
 };
 
 type Polygon = {
@@ -32,13 +26,13 @@ type Polygon = {
   maxY: number;
   minX: number;
   minY: number;
-  vertices: Vertex[];
+  vertices: Vector[];
 };
 
 const TWO_PI = Math.PI * 2;
 
 // See http://paulbourke.net/geometry/pointlineplane/
-function inwardEdgeNormal(vertex1: Vertex, vertex2: Vertex): Vector {
+function inwardEdgeNormal(vertex1: Vector, vertex2: Vector): Vector {
   // Assuming that polygon vertices are in clockwise order
   const dx = vertex2.x - vertex1.x;
   const dy = vertex2.y - vertex1.y;
@@ -50,7 +44,7 @@ function inwardEdgeNormal(vertex1: Vertex, vertex2: Vertex): Vector {
   };
 }
 
-function outwardEdgeNormal(vertex1: Vertex, vertex2: Vertex): Vector {
+function outwardEdgeNormal(vertex1: Vector, vertex2: Vector): Vector {
   var n = inwardEdgeNormal(vertex1, vertex2);
 
   return {
@@ -59,30 +53,7 @@ function outwardEdgeNormal(vertex1: Vertex, vertex2: Vertex): Vector {
   };
 }
 
-// If the slope of line vertex1,vertex2 greater than the slope of vertex1,p
-// then p is on the left side of vertex1,vertex2 and the return value is > 0.
-// If p is colinear with vertex1,vertex2 then return 0, otherwise return a value < 0.
-function leftSide(vertex1: Vertex, vertex2: Vertex, p: Vector): number {
-  return (
-    (p.x - vertex1.x) * (vertex2.y - vertex1.y) -
-    (vertex2.x - vertex1.x) * (p.y - vertex1.y)
-  );
-}
-
-function isReflexVertex(vertices: Vertex[], vertexIndex: number): boolean {
-  // Assuming that polygon vertices are in clockwise order
-  var thisVertex = vertices[vertexIndex];
-  var nextVertex = vertices[(vertexIndex + 1) % vertices.length];
-  var prevVertex =
-    vertices[(vertexIndex + vertices.length - 1) % vertices.length];
-  if (leftSide(prevVertex, nextVertex, thisVertex) < 0) {
-    return true; // TBD: return true if thisVertex is inside polygon when thisVertex isn't included
-  }
-
-  return false;
-}
-
-function createPolygon(vertices: Vertex[]): Polygon {
+function createPolygon(vertices: Vector[]): Polygon {
   const edges: Edge[] = [];
   let minX = vertices.length > 0 ? vertices[0].x : undefined;
   let minY = vertices.length > 0 ? vertices[0].y : undefined;
@@ -90,8 +61,6 @@ function createPolygon(vertices: Vertex[]): Polygon {
   let maxY = minY;
 
   for (let i = 0; i < vertices.length; i++) {
-    vertices[i].isReflex = isReflexVertex(vertices, i);
-
     const vertex1 = vertices[i];
     const vertex2 = vertices[(i + 1) % vertices.length];
 
@@ -164,11 +133,11 @@ function edgesIntersection(edgeA: Edge | OffsetEdge, edgeB: Edge | OffsetEdge) {
 
 function appendArc(
   arcSegments: number,
-  vertices: Vertex[],
+  vertices: Vector[],
   center: Vector,
   radius: number,
-  startVertex: Vertex,
-  endVertex: Vertex,
+  startVertex: Vector,
+  endVertex: Vector,
   isPaddingBoundary: boolean
 ) {
   var startAngle = Math.atan2(
@@ -234,7 +203,7 @@ function createMarginPolygon(
     offsetEdges.push(createOffsetEdge(edge, dx, dy));
   }
 
-  const vertices: Vertex[] = [];
+  const vertices: Vector[] = [];
 
   for (let i = 0; i < offsetEdges.length; i++) {
     const thisEdge = offsetEdges[i];
@@ -243,7 +212,10 @@ function createMarginPolygon(
     const vertex = edgesIntersection(prevEdge, thisEdge);
 
     if (vertex && (!vertex.isIntersectionOutside || arcSegments < 1)) {
-      vertices.push(vertex);
+      vertices.push({
+        x: vertex.x,
+        y: vertex.y,
+      });
     } else {
       const arcCenter = polygon.edges[i].vertex1;
 
@@ -280,7 +252,7 @@ function createPaddingPolygon(
     offsetEdges.push(createOffsetEdge(edge, dx, dy));
   }
 
-  const vertices: Vertex[] = [];
+  const vertices: Vector[] = [];
 
   for (let i = 0; i < offsetEdges.length; i++) {
     const thisEdge = offsetEdges[i];
@@ -288,7 +260,10 @@ function createPaddingPolygon(
       offsetEdges[(i + offsetEdges.length - 1) % offsetEdges.length];
     const vertex = edgesIntersection(prevEdge, thisEdge);
     if (vertex && (!vertex.isIntersectionOutside || arcSegments < 1)) {
-      vertices.push(vertex);
+      vertices.push({
+        x: vertex.x,
+        y: vertex.y,
+      });
     } else {
       const arcCenter = polygon.edges[i].vertex1;
 
