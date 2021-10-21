@@ -2,9 +2,9 @@
 
 Small, no dependency library for offsetting polygons. Heavily based on this [CodePen](https://codepen.io/HansMuller/pen/lDfzt) by Hans Muller.
 
-[Interactive demo](https://muffinman.io/offset-polygon)
+[Interactive demo](https://muffinman.io/offset-polygon/)
 
-[![Example polygons](example.png)](https://muffinman.io/offset-polygon)
+[![Example polygons](example.png)](https://muffinman.io/offset-polygon/)
 
 ## Params
 
