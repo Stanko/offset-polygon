@@ -7,7 +7,7 @@
   "types": "lib/offset-polygon.d.ts",
   "scripts": {
     "start": "snowpack dev",
-    "build-demo": "rm -rf ./docs && snowpack build && git add .",
+    "build-demo": "rm -rf ./docs && snowpack build && git add ./docs/",
     "types": "tsc ./src/offset-polygon.ts --declaration --emitDeclarationOnly --outDir lib",
     "build": "esbuild --bundle --sourcemap --format=esm ./src/offset-polygon.ts --outfile=lib/offset-polygon.js",
     "build-all": "npm run types && npm run build",
