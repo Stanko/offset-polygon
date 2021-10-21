@@ -23,11 +23,11 @@ Returns newly generated polygon vertices as an array of vector objects `{ x: num
 Get it from npm:
 
 ```
-npm install @muffinman/offset-polygon
+npm install offset-polygon
 ```
 
 ```js
-import offsetPolygon from "@muffinman/offset-polygon";
+import offsetPolygon from "offset-polygon";
 
 const polygon = [
   { "x": 413, "y": 123 },

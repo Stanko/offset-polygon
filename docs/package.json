@@ -1,5 +1,5 @@
 {
-  "name": "@muffinman/offset-polygon",
+  "name": "offset-polygon",
   "version": "0.9.0",
   "description": "",
   "main": "lib/offset-polygon.js",
@@ -19,6 +19,10 @@
     "padding",
     "margin"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stanko/offset-polygon.git"
+  },
   "author": "Stanko",
   "license": "MIT",
   "devDependencies": {
@@ -27,5 +31,8 @@
     "snowpack": "^3.8.8",
     "svelte": "^3.44.0",
     "typescript": "^4.4.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
