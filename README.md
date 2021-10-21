@@ -14,7 +14,7 @@ function offsetPolygon(vertices: Vector[], offset: number, arcSegments?: number)
 
 * `vertices` - array of vector objects `{ x: number, y: number }`
 * `offset` - number, how much should the polygon be offset. Positive values will create add margin, and negative padding.
-* `arcSegments` - number, default `0`. When set corners of the generated polygon will be rounded, by adding arc segments.
+* `arcSegments` - number, default `0`. When set, corners of the generated polygon will be rounded by an arc formed of straight line segments.
 
 Returns newly generated polygon vertices as an array of vector objects `{ x: number, y: number }`.
 
