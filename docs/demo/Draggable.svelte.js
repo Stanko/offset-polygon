@@ -11,7 +11,7 @@ import {
 	run_all,
 	safe_not_equal,
 	svg_element
-} from "../_snowpack/pkg/svelte/internal.js";
+} from "../snowpack/pkg/svelte/internal.js";
 
 function create_fragment(ctx) {
 	let circle;

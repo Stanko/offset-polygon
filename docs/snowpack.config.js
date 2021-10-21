@@ -16,6 +16,7 @@ export default {
   devOptions: {},
   buildOptions: {
     out: "docs",
-    baseUrl: "/offset-polygon"
+    baseUrl: "/offset-polygon",
+    metaUrlPath: "snowpack"
   }
 };

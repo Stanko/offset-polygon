@@ -31,5 +31,6 @@ export default {
   buildOptions: {
     out: 'docs',
     baseUrl: '/offset-polygon',
+    metaUrlPath: 'snowpack',
   },
 };

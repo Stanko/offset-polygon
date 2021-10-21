@@ -15,7 +15,7 @@ import {
 	set_data,
 	space,
 	text
-} from "../_snowpack/pkg/svelte/internal.js";
+} from "../snowpack/pkg/svelte/internal.js";
 
 function create_fragment(ctx) {
 	let div2;

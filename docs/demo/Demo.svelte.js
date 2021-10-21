@@ -21,9 +21,9 @@ import {
 	svg_element,
 	transition_in,
 	transition_out
-} from "../_snowpack/pkg/svelte/internal.js";
+} from "../snowpack/pkg/svelte/internal.js";
 
-import { onMount } from '../_snowpack/pkg/svelte.js';
+import { onMount } from '../snowpack/pkg/svelte.js';
 import Draggable from './Draggable.svelte.js';
 import Control from './Control.svelte.js';
 import generatePolygon from './generate-polygon.js';
