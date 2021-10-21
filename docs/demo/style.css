@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #f0f4f5;
+  color: #333;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'sans-serif';
+}
+
+h1,
+h2 {
+  font-weight: 400;
+  color: #007aff;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin: 0.8rem 0;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #e1e1e1;
+  transition: color 250ms, border-color 250ms;
+}
+
+a:hover {
+  color: #007aff;
+  border-bottom-color: #007aff;
+}
+
+.links {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.links-content {
+  max-width: 600px;
+  padding: 15px 20px;
+  margin: 0 auto;
+}
+
+pre {
+  overflow: auto;
+  color: #445;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid #e1e1e1;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0.8rem 0;
+}
+
+.c1 {
+  color: #2980b9;
+}
+
+.c2 {
+  color: #c0392b;
+}
+
+.c3 {
+  color: #16a085;
+}
+
+.c4 {
+  color: #888;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto 100px;
+}
+
+.content {
+  padding: 20px;
+}
+
+svg {
+  width: 100%;
+  background: white;
+  box-shadow: 0 0 5px #e1e1e1;
+  overflow: visible;
+}
+
+@media (pointer: none) {
+  .handle {
+    opacity: 0.1;
+  }
+}
+
+@media (min-width: 800px) {
+  .content,
+  .links-content {
+    padding: 20px 50px;
+  }
+}

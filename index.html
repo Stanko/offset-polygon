@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offset Polygon</title>
+    <meta
+      name="description"
+      content="No dependency JavaScript library for offsetting polygons."
+    />
+    <link rel="stylesheet" type="text/css" href="./demo/style.css" />
+
+    <!-- Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://muffinman.io/public/favicon/apple-touch-icon.png?v=v3"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://muffinman.io/public/favicon/favicon-32x32.png?v=v3"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://muffinman.io/public/favicon/favicon-16x16.png?v=v3"
+    />
+    <link
+      rel="manifest"
+      href="https://muffinman.io/public/favicon/manifest.json?v=v3"
+    />
+    <link
+      rel="mask-icon"
+      href="https://muffinman.io/public/favicon/safari-pinned-tab.svg?v=v3"
+      color="#e04856"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://muffinman.io/public/favicon/favicon.ico?v=v3"
+    />
+    <meta
+      name="msapplication-config"
+      content="https://muffinman.io/public/favicon/browserconfig.xml?v=v3"
+    />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <nav class="links">
+      <div class="links-content">
+        <a href="https://muffinman.io">My Blog</a> &bull;
+        <a href="https://github.com/Stanko/offset-polygon">GitHub</a> &bull;
+        <a href="https://www.npmjs.com/package/@muffinman/offset-polygon">
+          npm
+        </a>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <div class="content">
+        <h1>Offset Polygon</h1>
+        <p>Small, no dependency library for offsetting polygons.</p>
+
+        <p>Get it from npm:</p>
+        <pre>npm install @muffinman/offset-polygon</pre>
+
+        <p>Usage:</p>
+        <pre>
+<span class="c1">import</span> offsetPolygon from <span class="c2">"@muffinman/offset-polygon"</span>;
+
+<span class="c1">const</span> polygon = [
+  { <span class="c2">"x"</span>: <span class="c3">413</span>, <span class="c2">"y"</span>: <span class="c3">123</span> },
+  { <span class="c2">"x"</span>: <span class="c3">510</span>, <span class="c2">"y"</span>: <span class="c3">299</span> },
+  { <span class="c2">"x"</span>: <span class="c3">395</span>, <span class="c2">"y"</span>: <span class="c3">487</span> },
+  { <span class="c2">"x"</span>: <span class="c3">292</span>, <span class="c2">"y"</span>: <span class="c3">341</span> },
+  { <span class="c2">"x"</span>: <span class="c3">92</span>,  <span class="c2">"y"</span>: <span class="c3">327</span> },
+  { <span class="c2">"x"</span>: <span class="c3">146</span>, <span class="c2">"y"</span>: <span class="c3">158</span> },
+];
+
+<span class="c4">// Padding</span>
+<span class="c1">const</span> smallerPolygon = offsetPolygon(polygon, -<span class="c3">10</span>, <span class="c3">5</span>);
+
+<span class="c4">// Margin</span>
+<span class="c1">const</span> largerPolygon = offsetPolygon(polygon, <span class="c3">10</span>, <span class="c3">5</span>);
+</pre>
+      </div>
+    </div>
+    <script src="./demo/index.js" type="module"></script>
+  </body>
+</html>
